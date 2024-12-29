@@ -29,6 +29,7 @@
 		<!-- Plugin Properties -->
 		<maven.compiler.version>3.13.0</maven.compiler.version>
 		<maven.war.version>3.4.0</maven.war.version>
+		<eclipse.jetty.ee11.version>12.1.0.alpha1</eclipse.jetty.ee11.version>
 
 		<!-- Dependency Properties -->
 		<jakartaee.web.version>11.0.0-M4</jakartaee.web.version>
@@ -44,7 +45,7 @@
 		<finalName>jersey-plain</finalName>
 		<plugins>
 
-			<!-- Maven Compiler Plugin -->
+			<!-- Maven Compiler Plugin - https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -58,7 +59,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- Maven War Plugin -->
+			<!-- Maven War Plugin - https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>${maven.war.version}</version>
@@ -66,6 +67,14 @@
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
+
+			<!-- Eclipse Jetty Plugin - https://mvnrepository.com/artifact/org.eclipse.jetty.ee11/jetty-ee11-maven-plugin -->
+			<plugin>
+				<groupId>org.eclipse.jetty.ee11</groupId>
+				<artifactId>jetty-ee11-maven-plugin</artifactId>
+				<version>${eclipse.jetty.ee11.version}</version>
+			</plugin>
+
 		</plugins>
 	</build>
 
