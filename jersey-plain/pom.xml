@@ -38,6 +38,9 @@
 		<jboss.weld.version>6.0.0.Final</jboss.weld.version>
 		<eclipse.jersey.version>4.0.0-M1</eclipse.jersey.version>
 		<google.gson.version>2.11.0</google.gson.version>
+		<lombok.version>1.18.36</lombok.version>
+		<lombok.mapstruct-binding.version>0.2.0</lombok.mapstruct-binding.version>
+		<mapstruct.version>1.6.3</mapstruct.version>
 		<apache.log4j2.version>2.24.3</apache.log4j2.version>
 	</properties>
 
@@ -53,6 +56,23 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>${lombok.mapstruct-binding.version}</version>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+					</annotationProcessorPaths>
 					<compilerArgs>
 						<arg>-Xlint:all</arg>
 					</compilerArgs>
@@ -80,7 +100,7 @@
 
 	<dependencies>
 
-		<!-- Jakarta EE 11 Web - https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api -->
+		<!-- Jakarta Web Profile: EE11 - https://mvnrepository.com/artifact/jakarta.platform/jakarta.jakartaee-web-api -->
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-web-api</artifactId>
@@ -109,6 +129,7 @@
 			<groupId>jakarta.ws.rs</groupId>
 			<artifactId>jakarta.ws.rs-api</artifactId>
 			<version>${jakartaee.rest.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey REST Impl - https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
@@ -116,6 +137,7 @@
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-server</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey Servlet Container - https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet -->
@@ -123,6 +145,7 @@
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey Dependency Injection Manager: HK2 - https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
@@ -130,6 +153,7 @@
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey CDI Support - https://mvnrepository.com/artifact/org.glassfish.jersey.ext.cdi/jersey-cdi1x-servlet -->
@@ -137,6 +161,7 @@
 			<groupId>org.glassfish.jersey.ext.cdi</groupId>
 			<artifactId>jersey-cdi1x-servlet</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey CDI Support: Remove HK2 https://mvnrepository.com/artifact/org.glassfish.jersey.ext.cdi/jersey-cdi1x-ban-custom-hk2-binding -->
@@ -144,6 +169,7 @@
 			<groupId>org.glassfish.jersey.ext.cdi</groupId>
 			<artifactId>jersey-cdi1x-ban-custom-hk2-binding</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey Media Multipart Support - https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-multipart -->
@@ -151,6 +177,7 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-multipart</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Jersey JSON Support: GSON - https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-gson -->
@@ -158,6 +185,7 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-gson</artifactId>
 			<version>${eclipse.jersey.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- JSON Utility - https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -165,13 +193,33 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${google.gson.version}</version>
+			<scope>compile</scope>
 		</dependency>
+
+		<!-- Productivity Tool - https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Model Mapper - https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
 
 		<!-- Log4J Specification - https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
 			<version>${apache.log4j2.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Log4J Implementation - https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
@@ -179,6 +227,7 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>${apache.log4j2.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
