@@ -1,6 +1,7 @@
 package io.wulfcodes.plain.factory;
 
 import java.io.File;
+
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Disposes;
 import jakarta.enterprise.inject.Produces;
@@ -43,4 +44,5 @@ public class ConfigFactory implements Factory<Configuration> {
     public void dispose(@Disposes Configuration config) {
         config.clear();
     }
+
 }
