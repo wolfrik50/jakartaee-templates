@@ -11,7 +11,7 @@ import io.wulfcodes.plain.model.value.Type;
 @Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class CustomerData {
 
-    private String customerId;
+    private Long customerId;
     private String name;
     private Type type;
     private String email;
@@ -22,4 +22,5 @@ public class CustomerData {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private List<InvoiceData> invoices;
+
 }

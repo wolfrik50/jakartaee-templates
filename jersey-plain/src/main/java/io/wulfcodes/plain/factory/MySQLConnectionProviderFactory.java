@@ -1,8 +1,6 @@
 package io.wulfcodes.plain.factory;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Objects;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.Dependent;
 import jakarta.enterprise.inject.Disposes;
@@ -13,14 +11,14 @@ import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import org.apache.commons.configuration2.Configuration;
 
 @Dependent
-public class MySQLConnectionFactory implements Factory<Connection> {
+public class MySQLConnectionProviderFactory implements Factory<MysqlConnectionPoolDataSource> {
 
     private Configuration config;
 
     private MysqlConnectionPoolDataSource dataSource;
 
     @Inject
-    public MySQLConnectionFactory(Configuration config) {
+    public MySQLConnectionProviderFactory(Configuration config) {
         this.config = config;
     }
 
@@ -37,18 +35,11 @@ public class MySQLConnectionFactory implements Factory<Connection> {
     }
 
     @Produces
-    @Named("mysql-connection")
-    public Connection provide() throws SQLException {
-        return dataSource.getConnection();
+    @Named("mysql-conn-provider")
+    public MysqlConnectionPoolDataSource provide() throws SQLException {
+        return dataSource;
     }
 
 
-    public void dispose(@Disposes Connection conn) {
-        try {
-            if (Objects.nonNull(conn) && !conn.isClosed())
-                conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public void dispose(@Disposes MysqlConnectionPoolDataSource datasource) {}
 }

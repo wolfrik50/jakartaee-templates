@@ -13,7 +13,7 @@ public class Customer implements Serializable {
     @Serial
     private static final long serialVersionUID = -8579470110657194439L;
 
-    private String id;
+    private Long id;
     private String name;
     private Type type;
     private String email;
