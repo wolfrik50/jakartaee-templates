@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS invoices (
     id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT NOT NULL,
-    amount FLOAT NOT NULL,
+    customer_id BIGINT UNSIGNED NOT NULL,
+    amount DOUBLE NOT NULL,
     status VARCHAR(255) NOT NULL,
     billed_dated DATETIME NOT NULL,
     paid_dated DATETIME NULL DEFAULT NULL,

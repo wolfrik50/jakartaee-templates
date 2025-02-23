@@ -1,35 +1,38 @@
 package io.wulfcodes.plain.datastore;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import com.mysql.cj.jdbc.MysqlConnectionPoolDataSource;
 import lombok.extern.log4j.Log4j2;
-import io.wulfcodes.plain.factory.MySQLConnectionProviderFactory;
 import io.wulfcodes.plain.model.data.CustomerData;
+import io.wulfcodes.plain.model.value.Type;
 
+import static java.util.Locale.ROOT;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
+
 
 @ApplicationScoped
 @Log4j2
 public class CustomerDatastore {
+    private static final String GET_ALL_CUSTOMERS = "SELECT * FROM customers";
 
     @Inject
     private MysqlConnectionPoolDataSource dataSource;
 
-    public void createCustomer(CustomerData customerData) {
-        String query = "SELECT * FROM customers";
-
-
+    public List<CustomerData> getCustomers() {
         try (
             Connection connection = dataSource.getConnection();
-            PreparedStatement statement = connection.prepareStatement(query, RETURN_GENERATED_KEYS);
-            ResultSet resultSet = statement.executeQuery();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(GET_ALL_CUSTOMERS);
         ) {
+            List<CustomerData> customers = new ArrayList<>();
 
             while (resultSet.next()) {
                 Long id = resultSet.getLong("id");
@@ -37,22 +40,23 @@ public class CustomerDatastore {
                 String type = resultSet.getString("type");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
-                String city = resultSet.getString("city");
-                String state = resultSet.getString("state");
                 String postalCode = resultSet.getString("postal_code");
-                String createdAt = resultSet.getString("created_at");
-                String updatedAt = resultSet.getString("updated_at");
 
-                // Print customer data
-                System.out.println("ID: " + id + ", Name: " + name + ", Type: " + type +
-                    ", Email: " + email + ", Address: " + address + ", City: " + city +
-                    ", State: " + state + ", Postal Code: " + postalCode +
-                    ", Created At: " + createdAt + ", Updated At: " + updatedAt);
+                customers.add(CustomerData.builder()
+                    .customerId(id)
+                    .name(name)
+                    .type(Type.valueOf(type.toUpperCase(ROOT)))
+                    .email(email)
+                    .address(address)
+                    .postalCode(postalCode)
+                    .build());
             }
 
-            resultSet.close();
+            return customers;
+
         } catch (SQLException ex) {
             log.error("Exception occurred while retrieving customers", ex);
+            return Collections.emptyList();
         }
 
     }
