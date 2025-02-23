@@ -16,7 +16,7 @@ import org.apache.commons.configuration2.convert.ListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
 @Dependent
-public class ConfigFactory implements Factory<Configuration> {
+public class ConfigManagerFactory implements Factory<Configuration> {
 
     @Produces
     @Named("config")
@@ -36,8 +36,8 @@ public class ConfigFactory implements Factory<Configuration> {
                 .configure(propertyParameters);
 
             return configurationBuilder.getConfiguration();
-        } catch (ConfigurationException e) {
-            throw new ConfigurationException("Error loading configuration", e);
+        } catch (ConfigurationException ex) {
+            throw new ConfigurationException("Error loading configuration", ex);
         }
     }
 
