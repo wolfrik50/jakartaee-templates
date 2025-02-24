@@ -13,7 +13,7 @@ public class Invoice implements Serializable {
     @Serial
     private static final long serialVersionUID = 847646683776025001L;
 
-    private Integer id;
+    private Long id;
     private Long customerId;
     private Double amount;
     private Status status;

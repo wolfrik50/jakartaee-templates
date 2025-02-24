@@ -18,6 +18,9 @@ public class Customer implements Serializable {
     private Type type;
     private String email;
     private String address;
+    private String plot;
+    private String city;
+    private String state;
     private String postalCode;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

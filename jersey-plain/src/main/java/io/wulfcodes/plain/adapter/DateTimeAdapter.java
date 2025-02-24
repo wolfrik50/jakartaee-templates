@@ -2,6 +2,7 @@ package io.wulfcodes.plain.adapter;
 
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
+import jakarta.enterprise.context.Dependent;
 import com.google.common.annotations.Beta;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -12,6 +13,7 @@ import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import io.wulfcodes.plain.utils.DateTimeUtils;
 
+@Dependent
 public class DateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
 
     @Override

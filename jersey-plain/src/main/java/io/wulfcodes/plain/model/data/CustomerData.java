@@ -20,8 +20,8 @@ public class CustomerData {
     private String city;
     private String state;
     private String postalCode;
-    //    private LocalDateTime createdAt;
-    //    private LocalDateTime updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private List<InvoiceData> invoices;
 
 }

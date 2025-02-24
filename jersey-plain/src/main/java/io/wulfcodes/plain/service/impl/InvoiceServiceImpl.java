@@ -14,6 +14,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     private InvoiceDatastore invoiceDatastore;
 
     @Override
+    public List<InvoiceData> getInvoices() {
+        return invoiceDatastore.getInvoices();
+    }
+
+    @Override
     public List<InvoiceData> getInvoicesByCustomerId(long customerId) {
         return invoiceDatastore.getInvoicesByCustomerId(customerId);
     }

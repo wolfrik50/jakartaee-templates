@@ -40,6 +40,9 @@ public class CustomerDatastore {
                 String type = resultSet.getString("type");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("address");
+                String plot = resultSet.getString("plot");
+                String city = resultSet.getString("city");
+                String state = resultSet.getString("state");
                 String postalCode = resultSet.getString("postal_code");
 
                 customers.add(CustomerData.builder()
@@ -48,6 +51,9 @@ public class CustomerDatastore {
                     .type(Type.valueOf(type.toUpperCase(ROOT)))
                     .email(email)
                     .address(address)
+                    .plot(plot)
+                    .city(city)
+                    .state(state)
                     .postalCode(postalCode)
                     .build());
             }

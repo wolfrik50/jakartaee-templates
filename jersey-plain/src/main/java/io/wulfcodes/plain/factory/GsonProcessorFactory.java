@@ -7,6 +7,7 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Named;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.glassfish.jersey.gson.internal.JsonGsonProvider;
 import io.wulfcodes.plain.adapter.DateTimeAdapter;
 
 @Dependent

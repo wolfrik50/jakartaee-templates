@@ -3,7 +3,10 @@ CREATE TABLE IF NOT EXISTS customers (
     name VARCHAR(255) NOT NULL,
     type VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    address VARCHAR(255) NOT NULL,
+    address VARCHAR(150) NULL,
+    plot VARCHAR(50) NULL,
+    city VARCHAR(50) NULL,
+    state VARCHAR(50) NULL,
     postal_code VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NULL DEFAULT NULL,
     updated_at TIMESTAMP NULL DEFAULT NULL
